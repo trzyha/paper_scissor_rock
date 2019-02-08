@@ -8,58 +8,56 @@ oponentPoint = 0
 root = tkinter.Tk()
 root.title("Paper rock scissor game")
 root.minsize(600,400)
-root.geometry("450x450")
-root.columnconfigure(0, weight=1)
-root.columnconfigure(1, weight=1)
-root.columnconfigure(2, weight=1)
-root.rowconfigure(0, weight=1)
-root.rowconfigure(1, weight=1)
-root.rowconfigure(2, weight=1)
+root.geometry("750x600")
+root.columnconfigure(0, minsize=250)
+root.columnconfigure(1, minsize=250)
+root.columnconfigure(2, minsize=250)
+root.rowconfigure(0, minsize=250)
+root.rowconfigure(1, minsize=250)
+root.rowconfigure(2, minsize=100)
 #
 
 def oponentScore():
 	global oponentPoint
 	oponentPoint += 1
 	labelScore2["text"] = ("OPONENT POINTS: " + str(oponentPoint))
-	print ("Player: " + str(oponentPoint))
+
+
 
 def playerScore():
 	global playerPoint
 	playerPoint += 1
 	labelScore1["text"] = ("YOUR POINTS: " + str(playerPoint))
-	print ("Oponent " + str(playerPoint))
 
 
 def gameMechanics(x):
-    print(x)
     oponentChoice = randint(1,3)
-    #print(oponentChoice)    
+    print(oponentChoice)    
+    if oponentChoice == 1:
+    	labelGameBoard["image"] = img1
+    elif oponentChoice == 2:
+    	labelGameBoard["image"] = img2
+    elif oponentChoice == 3:
+    	labelGameBoard["image"] =  img3
+    	
     if x==1 and oponentChoice==1:
     	print("draw")
     elif x==1 and oponentChoice==2: 
-    	print("you won!")
     	playerScore()
     elif x==1 and oponentChoice==3: 
-    	print("you lost!")
     	oponentScore()
     elif x==2 and oponentChoice==1: 
-    	print("you lost!")
     	oponentScore()      	
     elif x==2 and oponentChoice==2: 
     	print("draw")    	
     elif x==2 and oponentChoice==3: 
-    	print("you won!")
     	playerScore()  
     elif x==3 and oponentChoice==1: 
-    	print("you won!")
     	playerScore()   
     elif x==3 and oponentChoice==2: 
-    	print("you lost!")
     	oponentScore()
     elif x==3 and oponentChoice==3: 
     	print("draw") 
-    print("Player " + str(playerScore))
-    print("Oponent " + str(oponentScore))
 
 #GAME GUI
 labelGameBoard = tkinter.Label(root,
