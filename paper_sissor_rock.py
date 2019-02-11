@@ -17,48 +17,61 @@ root.rowconfigure(1, minsize=250)
 root.rowconfigure(2, minsize=100)
 #
 
-def oponentScore():
+def oponentScore(oponentChoice):
 	global oponentPoint
 	oponentPoint += 1
 	labelScore2["text"] = ("OPONENT POINTS: " + str(oponentPoint))
+	if oponentChoice == 1:
+		labelGameBoard["image"] = img1
+	elif oponentChoice == 2:
+		labelGameBoard["image"] = img2
+	elif oponentChoice == 3:
+		labelGameBoard["image"] =  img3
 
 
-
-def playerScore():
+def playerScore(oponentChoice):
 	global playerPoint
 	playerPoint += 1
 	labelScore1["text"] = ("YOUR POINTS: " + str(playerPoint))
+	if oponentChoice == 1:
+		labelGameBoard["image"] = img1
+	elif oponentChoice == 2:
+		labelGameBoard["image"] = img2
+	elif oponentChoice == 3:
+		labelGameBoard["image"] =  img3
 
+def draw(oponentChoice):
+	if oponentChoice == 1:
+		labelGameBoard["image"] = img1
+	elif oponentChoice == 2:
+		labelGameBoard["image"] = img2
+	elif oponentChoice == 3:
+		labelGameBoard["image"] =  img3	
+	print("draw")	
 
 def gameMechanics(x):
+    global oponentChoice
     oponentChoice = randint(1,3)
     print(oponentChoice)    
-    if oponentChoice == 1:
-    	labelGameBoard["image"] = img1
-    elif oponentChoice == 2:
-    	labelGameBoard["image"] = img2
-    elif oponentChoice == 3:
-    	labelGameBoard["image"] =  img3
-    	
     if x==1 and oponentChoice==1:
     	print("draw")
+    	draw(oponentChoice)
     elif x==1 and oponentChoice==2: 
-    	playerScore()
+    	playerScore(oponentChoice)
     elif x==1 and oponentChoice==3: 
-    	oponentScore()
+    	oponentScore(oponentChoice)
     elif x==2 and oponentChoice==1: 
-    	oponentScore()      	
+    	oponentScore(oponentChoice)      	
     elif x==2 and oponentChoice==2: 
-    	print("draw")    	
+    	draw(oponentChoice)
     elif x==2 and oponentChoice==3: 
-    	playerScore()  
+    	playerScore(oponentChoice)  
     elif x==3 and oponentChoice==1: 
-    	playerScore()   
+    	playerScore(oponentChoice)   
     elif x==3 and oponentChoice==2: 
-    	oponentScore()
+    	oponentScore(oponentChoice)
     elif x==3 and oponentChoice==3: 
-    	print("draw") 
-
+    	draw(oponentChoice)
 #GAME GUI
 labelGameBoard = tkinter.Label(root,
                                text="PAPER ROCK SCISSORS GAME PRESS BUTTON TO START", fg="green", font="Helvetica 16 bold italic", justify="center", width=20, height=10)
@@ -87,4 +100,4 @@ button3.grid(column=2, row=1, sticky="WENS")
 
 
 if __name__=="__main__":
-    root.mainloop()
+	root.mainloop()
